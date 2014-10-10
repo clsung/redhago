@@ -1,4 +1,4 @@
-package redis
+package redhago
 
 import (
 	"encoding/json"
@@ -31,9 +31,9 @@ func NewPool(addr, pass string, maxIdle, idleTimeout int) *Pool {
 			return c, err
 		},
 		TestOnBorrow: func(c redigo.Conn, t time.Time) error {
-			glog.Warning("TestOnBorrow begin")
+			glog.Info("TestOnBorrow begin")
 			_, err := c.Do("EXISTS", "foobar")
-			glog.Warning("TestOnBorrow end")
+			glog.Info("TestOnBorrow end")
 			return err
 		},
 	}
